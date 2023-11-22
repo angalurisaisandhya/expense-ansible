@@ -36,9 +36,9 @@
       args:
         chdir: /app
     - name: Install MYSQL client
-        ansible.builtin.dnf:
-          name: mysql
-          state: present
+      ansible.builtin.dnf:
+        name: mysql
+        state: present
     - name: load schema
       ansible.builtin.shell: mysql -h mysql-dev.sdevops76.online -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql
     - name: starting backend service
@@ -47,4 +47,5 @@
         state: restarted
         enabled: yes
         daemon-reload: yes
+
 
