@@ -12,9 +12,11 @@
   ansible.builtin.template:
     src: filebeat.yml
     dest: /etc/filebeat/filebeat.yml
+  when: is_rsyslog_needed
 
 - name: Restart Filebeat
   ansible.builtin.systemd:
     name: filebeat
     state: restarted
     enabled: yes
+  when: is_rsyslog_needed
