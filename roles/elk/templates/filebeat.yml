@@ -50,9 +50,8 @@ filebeat.inputs:
 
     # Optional additional fields. These fields can be freely picked
     # to add additional information to the crawled log files for filtering
-    #fields:
-    #  level: debug
-    #  review: 1
+fields:
+   component: {{ component }}
 
 # ============================== Filebeat modules ==============================
 
@@ -151,7 +150,7 @@ output.elasticsearch:
   # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
- hosts: ["172.31.36.167:5044"]
+  hosts: ["172.31.36.167:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
