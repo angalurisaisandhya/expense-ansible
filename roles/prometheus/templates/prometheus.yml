@@ -31,3 +31,4 @@ scrape_configs:
     static_configs:
       - targets: ["172.31.47.42:9100"]
 
+
