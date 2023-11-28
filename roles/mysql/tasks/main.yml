@@ -20,7 +20,6 @@
 - name: Set MySQL password
   ansible.builtin.shell: mysql_secure_installation --set-root-pass"{{ lookup('amazon.aws.aws_ssm', 'mysql.{{env}}.DB_PASS', region='us-east-1' ) }}"
 
-
 - name: Import ELK Role - Filebeat
   ansible.builtin.import_role:
     name: elk
