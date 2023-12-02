@@ -99,7 +99,7 @@
           "editorMode": "code",
           "expr": "up",
           "instant": false,
-       {% raw %},
+        {% raw %},
           "legendFormat": "{{instance}}",
         {% endraw %},
           "range": true,
