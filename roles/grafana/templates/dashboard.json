@@ -99,9 +99,9 @@
           "editorMode": "code",
           "expr": "up",
           "instant": false,
-        {% raw %},
+        {% raw %}
           "legendFormat": "{{instance}}",
-        {% endraw %},
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
@@ -197,9 +197,9 @@
           "editorMode": "code",
           "expr": "(node_memory_MemFree_bytes+ node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes * 100",
           "instant": false,
-        {% raw %},
+        {% raw %}
           "legendFormat": "{{name}}",
-        {% endraw %},
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
