@@ -99,7 +99,9 @@
           "editorMode": "code",
           "expr": "up",
           "instant": false,
+       {% raw %},
           "legendFormat": "{{instance}}",
+        {% endraw %},
           "range": true,
           "refId": "A"
         }
@@ -195,7 +197,9 @@
           "editorMode": "code",
           "expr": "(node_memory_MemFree_bytes+ node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes * 100",
           "instant": false,
-          "legendFormat": "{{instance}}",
+        {% raw %},
+          "legendFormat": "{{name}}",
+        {% endraw %},
           "range": true,
           "refId": "A"
         }
@@ -235,7 +239,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "New dashboard",
+  "title": "frontend",
   "uid": "b75f7148-aa84-4f79-8bac-b7c89b3f7367",
   "version": 11,
   "weekStart": ""
