@@ -12,7 +12,7 @@
   amazon.aws.s3_object:
     bucket: sai-prometheus-alert-rules
     mode: list
-    register: OUT
+  register: OUT
 
 - name: Download all the objects from s3 Bucket Having Alert Files
   amazon.aws.s3_object:
