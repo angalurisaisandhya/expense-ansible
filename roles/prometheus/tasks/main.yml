@@ -16,7 +16,7 @@
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
 
-- name: Downlad all the objects from s3 Bucket Having Alert Files
+- name: Download all the objects from s3 Bucket Having Alert Files
   amazon.aws.s3_object:
     bucket: sai-prometheus-alert-rules
     mode: get
