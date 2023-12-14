@@ -2,7 +2,7 @@ groups:
   - name: {{ component }}-{{ env }}
     rules:
     - alert: CPUUsageAlertWarning
-      expr: avg by (instance) (100 - (rate(node_cpu_seconds_total{mode="idle"}}[5m])*100)) > 70
+      expr: avg by (instance)(100-(rate(node_cpu_seconds_total{mode="idle"}}[5m])*100)) > 70
       for: 1m
       labels:
         severity: warning
@@ -10,4 +10,30 @@ groups:
         env: {{ env }}
       annotations:
           summary: warning | CPU Usage Alert
-
+    - alert: CPUUsageAlertCritical
+      expr: avg by (instance)(100-(rate(node_cpu_seconds_total{mode="idle"}}[5m])*100)) > 90
+      for: 1m
+      labels:
+        severity: critical
+        component: {{ component }}
+        env: {{ env }}
+      annotations:
+        summary: critical | CPU Usage Alert
+    - alert: MemoryUsageAlertCritical
+      expr: ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes)/node_memory_MemTotal_bytes) * 100) > 90
+      for: 1m
+      labels:
+        severity: critical
+        component: {{ component }}
+        env: {{ env }}
+      annotations:
+        summary: critical | CPU Usage Alert
+    - alert: MemoryUsageAlertWarning
+      expr: ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes)/node_memory_MemTotal_bytes) * 100) > 70
+      for: 1m
+      labels:
+        severity: warning
+        component: {{ component }}
+        env: {{ env }}
+      annotations:
+        summary: warning | CPU Usage Alert
