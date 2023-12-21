@@ -33,20 +33,5 @@
     name: prometheus
     tasks_from: node-exporter
 
-- name: Import Grafana - Dashboard creation
-  ansible.builtin.import_role:
-    name: grafana
-
-- name: Generate Alert YAML file
-  ansible.builtin.template:
-    src: alert-rules.yml
-    dest: /tmp/{{component}}-{{env}}.yml
-
-- name: Upload Alert File to s3
-  amazon.aws.s3_object:
-    bucket: sai-prometheus-alert-rules
-    object: "{{component}}-{{env}}.yml"
-    src: /tmp/{{component}}-{{env}}.yml
-    mode: put
 
 
