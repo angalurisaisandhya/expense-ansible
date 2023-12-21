@@ -37,5 +37,3 @@ scrape_configs:
         filters:
           - name: "tag:Monitor"
             values: ["true"]
-
-
