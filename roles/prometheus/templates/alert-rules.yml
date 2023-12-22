@@ -4,7 +4,7 @@ groups:
       - alert: Instance Down
         expr: up < 1
         for: 1m
-      labels:
-        severity: critical
-      annotations:
-        summary: Instance Down Alert
+        labels:
+          severity: critical
+        annotations:
+          summary: Instance Down Alert
