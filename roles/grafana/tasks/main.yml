@@ -6,8 +6,7 @@
 - name: Add Grafana dashboard
   community.grafana.grafana_dashboard:
     grafana_url: http://172.31.36.0:3000
-   # grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
-    grafana_api_key: "glsa_P3OPHc0JggQx76bRJ8MgkbWSSBVlQKYT_7a226eea"
+    grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
     state: present
     commit_message: Updated by ansible
     overwrite: yes
