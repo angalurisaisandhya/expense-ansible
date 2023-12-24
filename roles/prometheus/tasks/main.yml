@@ -19,12 +19,12 @@
 #- name: Reload Alert Manager
 #  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep | awk '{print $2}')
 
-#- name: Download All the objects from s3 Bucket Having Alert files
-#  amazon.aws.s3_object:
-#    bucket: sai-prometheus-alert-rules
-#    mode: get
-#    object: "*"
-#    dest: /tmp/
+##- name: Download All the objects from s3 Bucket Having Alert files
+##  amazon.aws.s3_object:
+##    bucket: sai-prometheus-alert-rules
+##    mode: get
+##    object: "*"
+##    dest: /tmp/
 
 - name: List Keys all options
   amazon.aws.s3_oject:
