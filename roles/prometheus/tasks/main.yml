@@ -1,37 +1,34 @@
-#- name: Copy Prometheus Configuration
-#  ansible.builtin.template:
-#    src: prometheus.yml
-#    dest: /opt/prometheus/prometheus.yml
+- name: Copy Prometheus Configuration
+  ansible.builtin.template:
+    src: prometheus.yml
+   dest: /opt/prometheus/prometheus.yml
 
-#- name: Copy Alert Rules
-#  ansible.builtin.template:
-#    src: common.yml
-#    dest: /opt/prometheus/alert-rules/common.yml
+- name: Copy Alert Rules
+  ansible.builtin.template:
+    src: common.yml
+    dest: /opt/prometheus/alert-rules/common.yml
 
-#- name: Reload Prometheus
-#  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
-
-#- name: Copy Alert Manager Config
-#  ansible.builtin.template:
-#    src: alertmanager.yml
-#    dest: /opt/alertmanager/alertmanager.yml
-
-#- name: Download All the Objects from s3 Bucket Having Alert files
-#  amazon.aws.s3_object:
-#    bucket: sai-prometheus-alert-rules
-#    mode: get
-#    object: "{{item}}"
-#    dest: /tmp
-
-#- name: Reload Alert Manager
-#  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep | awk '{print $2}')
-
-- name: List Keys all options
+- name: List All files in Bucket
   amazon.aws.s3_object:
     bucket: sai-prometheus-alert-rules
     mode: list
   register: out
 
-- name: print
-  debug:
-    msg: "{{out}}"
+- name: Download All the Objects from s3 Bucket Having Alert files
+  amazon.aws.s3_object:
+    bucket: sai-prometheus-alert-rules
+    mode: get
+    object: "{{item}}"
+    dest: /opt/prometheus/alert-rules/
+  loop: "{{out.s3_keys}}"
+
+- name: Reload Prometheus
+  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
+
+- name: Copy Alert Manager Config
+  ansible.builtin.template:
+    src: alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
+
+- name: Reload Alert Manager
+  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep | awk '{print $2}')
