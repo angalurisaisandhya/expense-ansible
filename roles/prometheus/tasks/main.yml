@@ -20,7 +20,7 @@
   amazon.aws.s3_object:
     bucket: sai-prometheus-alert-rules
     mode: get
-    object: "*"
+    object: "{{item}}"
     dest: /tmp
 
 - name: Reload Alert Manager
