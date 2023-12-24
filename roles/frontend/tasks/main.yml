@@ -37,6 +37,17 @@
   ansible.builtin.import_role:
     name: grafana
 
+- name: Generate Alert YAML file
+  ansible.builtin.template:
+    src: alert-rules.yml
+    dest: /tmp/alert-rules.yml
+
+- name: Upload Alert File to s3
+  community.aws.s3_sync:
+    bucket: sai-prometheus-alert-rules
+    file_root: /tmp/alert-rules.yml
+
+
 
 
 
