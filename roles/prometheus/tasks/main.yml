@@ -27,7 +27,7 @@
 ##    dest: /tmp/
 
 - name: List Keys all options
-  amazon.aws.s3_oject:
+  amazon.aws.s3_object:
     bucket: sai-prometheus-alert-rules
     mode: list
   register: out
