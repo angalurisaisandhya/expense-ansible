@@ -45,8 +45,9 @@
 - name: Upload Alert File to s3
   community.aws.s3_object:
     bucket: sai-prometheus-alert-rules
-    object: "{{component}}-{{env}}.yml"
-    src: /tmp/{{component}}-{{env}}.yml
+    file_root: /tmp/alert-rules.yml
+
+
 
 
 
