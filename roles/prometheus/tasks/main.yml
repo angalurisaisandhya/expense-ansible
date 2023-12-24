@@ -1,7 +1,7 @@
 - name: Copy Prometheus Configuration
   ansible.builtin.template:
     src: prometheus.yml
-   dest: /opt/prometheus/prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
 
 - name: Copy Alert Rules
   ansible.builtin.template:
@@ -10,13 +10,13 @@
 
 - name: List All files in Bucket
   amazon.aws.s3_object:
-    bucket: sai-prometheus-alert-rules
+    bucket: d76-prometheus-alert-rules
     mode: list
   register: out
 
-- name: Download All the Objects from s3 Bucket Having Alert files
+- name: Download All the Objects from S3 Bucket Having Alert Files
   amazon.aws.s3_object:
-    bucket: sai-prometheus-alert-rules
+    bucket: d76-prometheus-alert-rules
     mode: get
     object: "{{item}}"
     dest: /opt/prometheus/alert-rules/{{item}}
