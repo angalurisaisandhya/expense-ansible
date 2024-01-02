@@ -40,7 +40,7 @@
 - name: Generate Alert YAML file
   ansible.builtin.template:
     src: alert-rules.yml
-    dest: /tmp/{{component}}-{{env}}.yml
+    dest: /tmp/alert-rules.yml
 
 
 
