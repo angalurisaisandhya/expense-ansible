@@ -1,27 +1,27 @@
-#- name: Installing nginx
-#  ansible.builtin.dnf:
-#    name: nginx
-#    state: present
+- name: Installing nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: present
 
-#- name: copy Expense config file
-#  ansible.builtin.template:
-#    src: expense.conf
-#    dest: /etc/nginx/default.d/expense.conf
+- name: copy Expense config file
+  ansible.builtin.template:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
 
-#- name: Import common Role - App Prerequisites
-#  ansible.builtin.import_role:
-#    name: common
-#    tasks_from: app-prereq
-#  vars:
-#    app_dir: /app
-#    component: frontend
-#    remote_src: yes
+- name: Import common Role - App Prerequisites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq
+  vars:
+    app_dir: /app
+    component: frontend
+    remote_src: yes
 
-#- name: Start nginx service
-#  ansible.builtin.systemd:
-#    name: nginx
-#    state: restarted
-#    enabled: yes
+- name: Start nginx service
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
 
 #- name: Import ELK Role - Filebeat
 #  ansible.builtin.import_role:
