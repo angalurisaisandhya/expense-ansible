@@ -8,3 +8,7 @@
     name: prometheus
     state: restarted
     enabled: yes
+- name: Copy Alert Rules
+  ansible.builtin.template:
+    src: alert-rules.yml
+    dest: /opt/prometheus/alert-rules.yml
