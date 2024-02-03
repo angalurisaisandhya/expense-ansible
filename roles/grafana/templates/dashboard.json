@@ -101,8 +101,9 @@
           "editorMode": "code",
           "expr": "up{name=\"frontend-dev\"}",
           "instant": false,
-          "interval": "",
+        {% raw %}
           "legendFormat": "{{instance}}",
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
@@ -198,7 +199,9 @@
           "editorMode": "code",
           "expr": "(node_memory_MemFree_bytes{name=\"frontend-dev\"} + node_memory_Cached_bytes{name=\"frontend-dev\"} + node_memory_Buffers_bytes{name=\"frontend-dev\"}) / node_memory_MemTotal_bytes{name=\"frontend-dev\"} * 100",
           "instant": false,
-          "legendFormat": "__auto",
+        {% raw %}
+          "legendFormat": "{{name}}",
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
