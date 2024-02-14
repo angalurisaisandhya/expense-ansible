@@ -3,11 +3,8 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
-- name: Restart Prometheus
-  ansible.builtin.systemd:
-    name: prometheus
-    state: restarted
-    enabled: yes
+- name: Reload Prometheus
+  ansible.builtin.systemd: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep  | awk '{print $2}')
 
 - name: Copy Alert Rules
   ansible.builtin.template:
@@ -19,8 +16,6 @@
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
 
-- name: Restart Alert Manager
-  ansible.builtin.systemd:
-    name: alertmanager
-    state: restarted
-    enabled: yes
+- name: Reload Alert Manager
+  ansible.builtin.systemd: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
+
