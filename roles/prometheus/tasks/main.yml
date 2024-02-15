@@ -1,27 +1,37 @@
-- name: Copy Prometheus configuration
-  ansible.builtin.template:
-    src: prometheus.yml
-    dest: /opt/prometheus/prometheus.yml
+#- name: Copy Prometheus configuration
+#  ansible.builtin.template:
+#    src: prometheus.yml
+#    dest: /opt/prometheus/prometheus.yml
 
-- name: Reload Prometheus
-  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep  | awk '{print $2}')
+#- name: Reload Prometheus
+#  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep  | awk '{print $2}')
 
-- name: Copy Alert Rules
-  ansible.builtin.template:
-    src: common.yml
-    dest: /opt/prometheus/alert-rules/common.yml
+#- name: Copy Alert Rules
+#  ansible.builtin.template:
+#    src: common.yml
+#    dest: /opt/prometheus/alert-rules/common.yml
 
-- name: Copy Alert Manager config
-  ansible.builtin.template:
-    src: alertmanager.yml
-    dest: /opt/alertmanager/alertmanager.yml
+#- name: Copy Alert Manager config
+#  ansible.builtin.template:
+#    src: alertmanager.yml
+#    dest: /opt/alertmanager/alertmanager.yml
 
-- name: Download all the objects from s3 Bucket having Alert files
+#- name: Download all the objects from s3 Bucket having Alert files
+#  amazon.aws.s3_object:
+#    bucket: sai-prometheus-alert-rules
+#    mode: get
+#   object: "*"
+#    dest: /tmp/
+
+#- name: Reload Alert Manager
+# ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
+
+- name: List keys all options
   amazon.aws.s3_object:
     bucket: sai-prometheus-alert-rules
-    mode: get
-    object: "*"
-    dest: /tmp/
+    mode: list
+  register: out
 
-- name: Reload Alert Manager
-  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
+- name: print
+  debug:
+    msg: "{{out}}"
