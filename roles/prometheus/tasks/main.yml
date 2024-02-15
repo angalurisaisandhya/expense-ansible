@@ -16,6 +16,12 @@
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
 
+- name: Download all the objects from s3 Bucket having Alert files
+  amazon.aws.s3_object:
+    bucket: sai-prometheus-alert-rules
+    mode: get
+    object: "*"
+    dest: /tmp/
+
 - name: Reload Alert Manager
   ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
-
