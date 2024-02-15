@@ -31,4 +31,4 @@
     dest: /opt/alertmanager/alertmanager.yml
 
 - name: Reload Alert Manager
- ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
+  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep  | awk '{print $2}')
