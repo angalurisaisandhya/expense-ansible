@@ -37,5 +37,12 @@ groups:
                env: { { env } }
             annotations:
                summary: Warning | CPU Usage Alert
-
-  ##
+          - alert: Dummy
+            expr: up < 1m
+            for: 1m
+            labels:
+              severity: warning
+              component: {{component}}
+              env: {{env}}
+            annotations:
+              summary: critical | Dummy Alert
