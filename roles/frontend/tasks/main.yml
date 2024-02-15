@@ -42,3 +42,4 @@
     bucket: sai-prometheus-alert-rules
     object: "{{component}}-{{env}}.yml"
     src: /tmp/{{component}}-{{env}}.yml
+    mode: put
